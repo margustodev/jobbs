@@ -20,6 +20,12 @@ use MF\Init\Bootstrap;
                 'action' => 'index'
             );
 
+            $routes['detalhar'] = array(
+                'route' => '/detalhar',
+                'controller' => 'IndexController',
+                'action' => 'detalharAnuncio'
+            );
+
             $routes['login'] = array(
                 'route' => '/login',
                 'controller' => 'AuthController',

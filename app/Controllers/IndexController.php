@@ -29,6 +29,19 @@ class IndexController extends Action{
 		$this->render('index','layout');
 	}
 
+	public function detalharAnuncio() {
+
+	
+		$anuncio = Container::getModel('Anuncio');
+		$id = $_GET['id'];
+		
+		$anuncio = $anuncio->visualizarPorAnuncio($id);
+	
+		$this->view->anuncio = $anuncio;
+		
+		$this->render('detalha_anuncio','layout');
+	}
+
 	public function signup() {
 
 		$cidade = Container::getModel('Cidade');

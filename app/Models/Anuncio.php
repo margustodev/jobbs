@@ -80,7 +80,21 @@ use MF\Model\Model;
 
         }
 
+        public function visualizarPorAnuncio($idAnuncio){
 
+$query = "select distinct a.id, a.titulo, a.descricao,a.data_inicio,a.data_fim,a.ativo,a.fotos_trabalhos,
+prof.nome_publico,prof.sobre, prof.formas_pagamento, cid.nome from anuncio as a
+            INNER JOIN perfil_profissional as prof on a.perfil_profissional = prof.id
+            INNER JOIN cidade as cid on prof.cidade_atuacao = cid.id
+WHERE a.id = ?";
+
+             $stmt = $this->db->prepare($query);
+            $stmt->bindValue(1, $idAnuncio);
+            $stmt->execute();
+           
+            return $stmt->fetch();
+
+        }
 
 
 
