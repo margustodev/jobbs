@@ -69,19 +69,6 @@ use MF\Init\Bootstrap;
                 'action' => 'meuPerfilProfissional'
             );
 
-            $routes['/criar_perfil'] = array(
-                'route' => '/criar_perfil',
-                'controller' => 'AppController',
-                'action' => 'criarPerfil'
-            );
-
-            
-            $routes['/processar_perfil'] = array(
-                'route' => '/processar_perfil',
-                'controller' => 'AppController',
-                'action' => 'processarPerfil'
-            );
-
 
 
             $this->setRoutes($routes);

@@ -65,12 +65,26 @@ use MF\Model\Model;
             $stmt->execute();
            
            
-            $resultado = $stmt->fetchAll();
+            $resultado = $stmt->fetch();
 
             return $resultado;
     
         }
 
+        public function getPerfil($idUsuario){
+            $query = "SELECT id,data_nascimento,telefone,endereco_comercial,nome_publico,sobre
+            ,formas_pagamento,ativo, cidade_atuacao FROM perfil_profissional WHERE usuario_id = ?";
+        
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(1, $idUsuario);
+            $stmt->execute();
+           
+            return $stmt->fetch();
+        
+        }
+
+
+     
     }
 
 

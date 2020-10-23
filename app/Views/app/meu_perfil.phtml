@@ -1,29 +1,48 @@
 
 
-<button type="submit" class="btn btn-secondary" value="submit">Criar Novo Perfil Profissional</button>
+
 <div class="form-group">
-<?php
+
+<form method="POST" action = "/editar_perfil">
+
+    <div class="form-group">
+    <label for="nome_publico">Nome Público</label>
+    <input type="text" class="form-control"  required="true" id="nome_publico" name="nome_publico" 
+            value="<?=$this->view->perfil['nome_publico'] ?>">
+    </div>
 
 
-
-foreach ($this->view->perfis as $key => $value) {
-
-
-?>
-<form>
-<input type="text" value = <?= $value['id'] ?>>
-
-<input type="text" value = <?= $value['nome_publico'] ?>>
-
-<input type="text" value = <?= $value['descricao'] ?>>
-
-<input type="text" value = <?= $value['data_inicio'] ?>>
-
-<input type="text" value = <?= $value['fotos_trabalhos'] ?>>
+    <div class="form-group">
+    <label for="descricao">Telefone</label>
+    <input type="text" class="form-control"  required="true" id="descricao" name="descricao" 
+value="<?=$this->view->perfil['telefone'] ?>">
+    </div>
 
 
-<button type="submit" class="btn btn-secondary" value="submit">Alt</button>
-<button type="submit" class="btn btn-secondary" value="submit">Exc</button>
+    <div class="form-group">
+    <label for="fotos">Endereço Comercial</label>
+    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['endereco_comercial'] ?>">
+    </div>
+    <div class="form-group">
+    <label for="fotos">Sobre</label>
+    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['sobre'] ?>">
+    </div>
 
+    <div class="form-group">
+    <label for="fotos">Formas Pagamento</label>
+    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['formas_pagamento'] ?>">
+    </div>
+
+    <div class="form-group">
+    <label for="fotos">Formas de Pagamento</label>
+    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['formas_pagamento'] ?>">
+    </div>
+
+    <div class="form-group">
+    <label for="fotos">Cidade Atuação</label>
+    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['cidade_atuacao'] ?>">
+    </div>
+    <button type="submit" class="btn btn-secondary" value="submit">Alterar</button>
 </form>
-<?php } ?>
+
+</div>

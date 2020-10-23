@@ -45,16 +45,6 @@ if(isSet($_GET['msg'])){
     <input type="text" class="form-control"  id="fotos" name="fotos"">
 
 </div>
-<div class="form-row">
-    <label for="id_perfil">Nome Público</label>
-    <select class="form-control" name="id_perfil" id="id_perfil">
-
-        <?php foreach ($this->view->perfis as $id => $valor) {  ?>
-           
-       
-      <option value=<?= $valor['id'] ?>><?= $valor['nome_publico'] ?></option>
-      <?php   }?>
-</select>
 </div>
 
     <button type="submit" class="btn btn-secondary" value="submit">Publicar Anúncio</button>

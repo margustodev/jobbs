@@ -12,14 +12,14 @@ use App\Models;
 class AppController extends Action{
 
 
-
+//tela inicial
     public function anuncioView(){
         if(AuthController::checkPermissao(1)){
 
-            $perfilProfissional = Container::getModel('PerfilProfissional');
-            $idUsuario = AuthController::getIdSession();
-            $resultado = $perfilProfissional->getPerfisById($idUsuario);
-            $this->view->perfis = $resultado;
+            //$perfilProfissional = Container::getModel('PerfilProfissional');
+           // $idUsuario = AuthController::getIdSession();
+           // $resultado = $perfilProfissional->getPerfisById($idUsuario);
+          //  $this->view->perfis = $resultado;
         $this->render('novo_anuncio','layout');
 
     }else{
@@ -34,7 +34,7 @@ class AppController extends Action{
 
     public function publicarAnuncio(){
 
-        $autenticado = false;
+   
         if(AuthController::checkPermissao(1)){
         
         $idUsuario = AuthController::getIdSession();
@@ -42,33 +42,37 @@ class AppController extends Action{
 		if(isset($_POST['titulo']) 
 		&& isset($_POST['descricao'])
         && isset($_POST['fotos'])
-        && isset($_POST['id_perfil'])
 	){
 
 		$anuncio = Container::getModel('Anuncio');
-		$perfilProfissional = Container::getModel('PerfilProfissional');
+        $perfilProfissional = Container::getModel('PerfilProfissional');
+        $usuario = Container::getModel('Usuario');
+        $usuario->__set('id',$idUsuario);
 		
 		$anuncio->__set('titulo', $_POST['titulo']);
 		$anuncio->__set('descricao', $_POST['descricao']);
         $anuncio->__set('fotos_trabalhos', $_POST['fotos']);
         $anuncio->__set('data_inicio', date("y-m-d"));
-
-        if($perfilProfissional->checkIdUsuario($idUsuario)){
+echo "OBA";
+/*         if($perfilProfissional->checkIdUsuario($idUsuario)){
         $perfilProfissional->__set('id',$_POST['id_perfil']);
-        $perfilProfissional->__set('usuario',$idUsuario);
-        $anuncio->__set('perfilProfissional',$perfilProfissional);
+
+
         echo "perfil bate";
         }else{
             echo "Falha na criação do anuncio";
 
 			//header("Location: /novo_anuncio?msg=erroA");
-        }
+        } */
 
+        $idPerfil = $perfilProfissional->getPerfisById($idUsuario);
 
+        $perfilProfissional->__set('id',$idPerfil['id']);
+        $anuncio->__set('perfilProfissional',$perfilProfissional);
 	
 		if($anuncio->salvar()){
 			echo "Criado com sucesso";
-			header("refresh:3 /index");
+			header("refresh:3 /");
 			//$this->render('index','layout');
 		}else{
 			echo "Falha na criação do anuncio";
@@ -77,7 +81,7 @@ class AppController extends Action{
 		}
 
 	}else{
-		echo "Falha na criação do usuário";
+		echo "Falha na criação do anúncio";
 		header("Location: /novo_anuncio?msg=erroC");
     }
 
@@ -95,10 +99,7 @@ class AppController extends Action{
 
 
 
-
-
-
-    // visualizar proprio anuncio
+    // visualizar proprio anuncios
     public function meusAnuncios(){
 
         if(AuthController::checkPermissao(1)){
@@ -150,8 +151,9 @@ class AppController extends Action{
             
             $idUsuario = AuthController::getIdSession();
             $perfil = Container::getModel('PerfilProfissional');
-                $perfis = $perfil->getPerfisById($idUsuario);
-                $this->view->perfis = $perfis;
+ 
+                $perfil = $perfil->getPerfil($idUsuario);
+                $this->view->perfil = $perfil;
             $this->render('meu_perfil','layout');
     
             }else{
@@ -162,43 +164,9 @@ class AppController extends Action{
     
         }
 
-                // TODO
-                public function criarPerfil(){
 
-                    if(AuthController::checkPermissao(1)){
-                    
-                    $idUsuario = AuthController::getIdSession();
-                    $perfil = Container::getModel('PerfilProfissional');
-                        $perfis = $perfil->getPerfisById($idUsuario);
-                        $this->view->perfis = $perfis;
-                    $this->render('meu_perfil','layout');
-            
-                    }else{
-                        echo "Você precisa fazer login";
-                        header("Location: /login?msg=erro");
-                    
-                    }
-            
-                }
-
-                                //TODO
-                                public function processarPerfil(){
-
-                                    if(AuthController::checkPermissao(1)){
-                                    
-                                    $idUsuario = AuthController::getIdSession();
-                                    $perfil = Container::getModel('PerfilProfissional');
-                                        $perfis = $perfil->getPerfisById($idUsuario);
-                                        $this->view->perfis = $perfis;
-                                    $this->render('meu_perfil','layout');
                             
-                                    }else{
-                                        echo "Você precisa fazer login";
-                                        header("Location: /login?msg=erro");
-                                    
-                                    }
-                            
-                                }
+                     
 
 
 

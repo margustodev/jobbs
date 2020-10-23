@@ -55,7 +55,7 @@ use MF\Model\Model;
 
         public function visualizarPorId($idUsuario){
 
-            $query = "select * from anuncio as a
+            $query = "select distinct a.id, a.titulo, a.descricao,a.data_inicio,a.data_fim,a.ativo,a.fotos_trabalhos from anuncio as a
             INNER JOIN perfil_profissional as prof on a.perfil_profissional = prof.id
             INNER JOIN usuario as user on prof.usuario_id = ?";
 
@@ -79,6 +79,9 @@ use MF\Model\Model;
             return $stmt->fetchAll();
 
         }
+
+
+
 
 
 
