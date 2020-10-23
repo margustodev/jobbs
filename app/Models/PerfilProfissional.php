@@ -72,8 +72,10 @@ use MF\Model\Model;
         }
 
         public function getPerfil($idUsuario){
-            $query = "SELECT id,data_nascimento,telefone,endereco_comercial,nome_publico,sobre
-            ,formas_pagamento,ativo, cidade_atuacao FROM perfil_profissional WHERE usuario_id = ?";
+            $query = "SELECT perfil_profissional.id,cid.nome as cidade,data_nascimento,telefone,endereco_comercial,nome_publico,sobre
+            ,formas_pagamento,ativo FROM perfil_profissional 
+            INNER JOIN cidade as cid on perfil_profissional.cidade_atuacao = cid.id
+            WHERE usuario_id = ?";
         
             $stmt = $this->db->prepare($query);
             $stmt->bindValue(1, $idUsuario);
