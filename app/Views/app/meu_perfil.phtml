@@ -1,0 +1,29 @@
+
+
+<button type="submit" class="btn btn-secondary" value="submit">Criar Novo Perfil Profissional</button>
+<div class="form-group">
+<?php
+
+
+
+foreach ($this->view->perfis as $key => $value) {
+
+
+?>
+<form>
+<input type="text" value = <?= $value['id'] ?>>
+
+<input type="text" value = <?= $value['nome_publico'] ?>>
+
+<input type="text" value = <?= $value['descricao'] ?>>
+
+<input type="text" value = <?= $value['data_inicio'] ?>>
+
+<input type="text" value = <?= $value['fotos_trabalhos'] ?>>
+
+
+<button type="submit" class="btn btn-secondary" value="submit">Alt</button>
+<button type="submit" class="btn btn-secondary" value="submit">Exc</button>
+
+</form>
+<?php } ?>

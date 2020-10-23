@@ -1,0 +1,65 @@
+
+<?php
+
+
+//echo "Estamos aqui no signup phtml>".$this->view->dados." <";
+
+
+
+?>
+
+<div class="container">
+<?php 
+if(isSet($_GET['msg'])){
+        if($_GET['msg'] == 'erro'){
+   
+            ?>
+
+         <div class="alert alert-danger" role="alert">
+         Verifique os campos e tente novamente.
+         </br>
+     <?php  } }?>
+     </div>
+<h1>Novo Anúncio</h1>
+
+
+<div class="container">
+<form method="POST" action="/publica_anuncio">
+<div class="form-row">
+
+<div class="form-group col-md-5">
+<label for="titulo">Título</label>
+    <input type="text" class="form-control" id="titulo" name="titulo" required="true" placeholder="Título do anúncio">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-5">
+    <label for="descricao">Descricao</label>
+    <textarea rows="3" class="form-control" required="true"  id="descricao" name="descricao">
+            </textarea>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-3">
+    <label for="fotos">Fotos</label>
+    <input type="text" class="form-control"  id="fotos" name="fotos"">
+
+</div>
+<div class="form-row">
+    <label for="id_perfil">Nome Público</label>
+    <select class="form-control" name="id_perfil" id="id_perfil">
+
+        <?php foreach ($this->view->perfis as $id => $valor) {  ?>
+           
+       
+      <option value=<?= $valor['id'] ?>><?= $valor['nome_publico'] ?></option>
+      <?php   }?>
+</select>
+</div>
+
+    <button type="submit" class="btn btn-secondary" value="submit">Publicar Anúncio</button>
+
+
+</form>
+
+</div>

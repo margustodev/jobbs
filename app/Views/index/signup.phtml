@@ -1,0 +1,115 @@
+
+<?php
+
+
+//echo "Estamos aqui no signup phtml>".$this->view->dados." <";
+
+
+
+?>
+
+<div class="container">
+<?php 
+if(isSet($_GET['msg'])){
+        if($_GET['msg'] == 'erro'){
+   
+            ?>
+
+         <div class="alert alert-danger" role="alert">
+         Verifique os campos e tente novamente.
+         </br>
+     <?php  } }?>
+     </div>
+<h1>Cadastro de Usuário</h1>
+
+
+<div class="container">
+<form method="POST" action="/processa_registro">
+<div class="form-row">
+<div class="form-group col-md-5">
+<label for="nome">Nome</label>
+    <input type="text" class="form-control" id="nome" name="nome" required="true" placeholder="Seu nome completo">
+</div>
+
+<div class="form-group col-md-5">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" required="true"  id="email" name="email" placeholder="Seu e-mail">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-3">
+    <label for="login">Usuário</label>
+    <input type="text" class="form-control" required="true"  id="login" name="login" placeholder="Crie um usuário">
+
+</div>
+    <div class="form-group col-md-2">
+    <label for="senha">Senha</label>
+    <input type="password" class="form-control"  required="true" id="senha" name="senha" placeholder="Digite uma senha">
+</div>
+<div class="form-group col-md-3">
+    <label for="cpf">CPF</label>
+    <input type="text" class="form-control" id="cpf"  required="true" name="cpf" placeholder="Digite seu CPF">
+</div>
+<div class="form-group col-md-2">
+    <label for="data_nascimento">Data de Nascimento</label>
+    <input type="date" class="form-control" id="data_nascimento"  required="true" name="data_nascimento" placeholder="Digite sua data de nascimento">
+</div>
+</div>
+
+
+
+
+
+<div class="form-group">
+    <label for="telefone">Telefone</label>
+    <input type="text" class="form-control" id="telefone"  required="true" name="telefone" placeholder="Digite seu telefone">
+</div>
+
+<div class="form-group">
+    <label for="endereco_residencial">Endereço Residencial</label>
+    <input type="text" class="form-control" id="endereco_residencial" name="endereco_residencial" placeholder="Digite seu endereço residencial">
+</div>
+
+<div class="form-group">
+    <label for="endereco_comercial">Endereço Comercial</label>
+    <input type="text" class="form-control" id="endereco_comercial" name="endereco_comercial" placeholder="Digite seu endereço comercial">
+</div>
+
+<div class="form-group">
+    <label for="nome_publico">Nome a ser exibido</label>
+    <input type="text" class="form-control" id="nome_publico"  required="true" name="nome_publico" placeholder="Coloque o nome que deseja que outros vejam">
+</div>
+<div class="form-group">
+    <label for="ramo_atividade">Ramo de Atividade</label>
+    <select class="form-control" name="ramo_atividade_id" id="ramo_atividade">
+        <?php foreach ($this->view->ramo_atividades as $id => $valor) {  ?>
+           
+       
+      <option value=<?= $valor['id'] ?>><?= $valor['descricao'] ?></option>
+      <?php   }?>
+</select>
+
+<div class="form-group">
+    <label for="cidade_atuacao">Cidade de atuação</label>
+    <select class="form-control" name="cidade_atuacao_id" id="cidade_atuacao">
+        <?php foreach ($this->view->cidades as $id => $valor) {  ?>
+          
+      <option value=<?= $valor['id'] ?>><?= $valor['nome'] ?></option>
+      <?php   }?>
+        </select>
+    </div>
+<div class="form-group">
+    <label for="formas_pagamento">Formas de Pagamento</label>
+    <select multiple class="form-control" id="formas_pagamento">
+      <option>Dinheiro</option>
+      <option>Cartão de Débito</option>
+      <option>Cartão de Crédito</option>
+</select>
+</div>
+
+    <button type="submit" class="btn btn-secondary" value="submit">Fazer Cadastro</button>
+
+
+</form>
+
+</div>
