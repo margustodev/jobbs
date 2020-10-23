@@ -101,17 +101,17 @@ class IndexController extends Action{
 		echo "Setado";
 		if($usuario->salvar()){
 			echo "Criado com sucesso";
-			header("refresh:3 /index");
-			$this->render('index','layout');
+			header("refresh:3 /");
+			
 		}else{
 			echo "Falha na criação do usuário";
 
-			header("Location: /signup?msg=erro");
+			header("refresh:3 /signup?msg=erro");
 		}
 
 	}else{
 		echo "Falha na criação do usuário";
-		header("Location: /signup?msg=erro");
+		header("refresh:3 /signup?msg=erro");
 	}
 	
 

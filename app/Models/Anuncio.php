@@ -71,7 +71,7 @@ use MF\Model\Model;
         public function visualizarUltimos(){
 
             $query = "SELECT * from anuncio
-            ORDER by data_inicio DESC";
+            ORDER by data_inicio ASC";
 
              $stmt = $this->db->prepare($query);
             $stmt->execute();
