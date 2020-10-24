@@ -1,10 +1,49 @@
-<?php
-
-echo "Exibindo detalhes";
-
-print_r($this->view->anuncio);
 
 
+<div class="container mx-0 rounded"style=" border:1px solid #cecece ;">
+<h5 class="card-header"><?=$this->view->anuncio['nome_publico']?></h5>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation" >
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Serviços</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dados</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Fotos</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      
+  <h5 class="card-title"><?=$this->view->anuncio['titulo']?></h5>
+  <p class="card-text">Descrição: <?=$this->view->anuncio['descricao']?></p>
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  Sobre mim: <?=$this->view->anuncio['sobre']?>
+  <div class="card-body">
+  Ativo desde: <?=$this->view->anuncio['data_inicio']?></div>
+  Formas de pagamento: <?=$this->view->anuncio['formas_pagamento']?>
+  </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <Fotos>
+    <?=$this->view->anuncio['fotos_trabalhos']?>
+    </div>
+</div>
 
 
-?>
+  <div class="card-body">
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</div>

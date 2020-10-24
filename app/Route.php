@@ -26,6 +26,13 @@ use MF\Init\Bootstrap;
                 'action' => 'detalharAnuncio'
             );
 
+            $routes['pesquisar'] = array(
+                'route' => '/pesquisar',
+                'controller' => 'IndexController',
+                'action' => 'pesquisarAnuncio'
+            );
+
+
             $routes['login'] = array(
                 'route' => '/login',
                 'controller' => 'AuthController',

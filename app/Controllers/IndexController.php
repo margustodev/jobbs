@@ -42,6 +42,35 @@ class IndexController extends Action{
 		$this->render('detalha_anuncio','layout');
 	}
 
+	public function pesquisarAnuncio() {
+
+	
+		if(isset($_GET['chave'])) {
+			if(!isset($_GET['local'])){
+				$local = '';
+			}else{
+				$local = $_GET['local'];
+			}
+
+		
+		$anuncio = Container::getModel('Anuncio');
+		$chave = $_GET['chave'];
+		
+		
+		$anuncio = $anuncio->buscarAnuncios($chave, $local);
+	
+		$this->view->anuncios = $anuncio;
+		
+		$this->render('resultado','layout');
+		}else{
+			echo "Digite um termo para pesquisar.";
+			header("refresh:3 /");
+		
+		}
+	}
+
+
+
 	public function signup() {
 
 		$cidade = Container::getModel('Cidade');
@@ -52,7 +81,7 @@ class IndexController extends Action{
 
 		$this->view->cidades = $cidades ;
 		$this->view->ramo_atividades = $ramo_atividades;
-		$this->render('signup','layout');
+		$this->render('signup','layout2');
 		
 	}
 

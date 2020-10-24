@@ -1,12 +1,13 @@
 
     <div class="container">
     
-    <h3>Últimos Cadastros</h3>
+    <h3>Resultado da Pesquisa por '<?=$_GET['chave'] ?>'
+    <?php isset($_GET['local']) && $_GET['local'] != '' ? print_r("e local '". $_GET['local']. "'") : print_r('') ?></h3>
 
     <div class="row">
 <?php
 
-foreach($this->view->ultimos_anuncios as $id => $campo){
+foreach($this->view->anuncios as $id => $campo){
 
 ?>
 

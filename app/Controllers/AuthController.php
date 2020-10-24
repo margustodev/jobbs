@@ -57,7 +57,7 @@ class AuthController extends Action{
 		}else{
 			
 
-			$this->render('login');
+			$this->render('login','layout2');
 		}
 
 
@@ -98,8 +98,8 @@ class AuthController extends Action{
 		
 		if(isset($_SESSION['autenticado']) && isset($_SESSION['acesso'])){
 			if($_SESSION['autenticado'] == 'true' && $_SESSION['acesso'] >= 0){
-					echo "Usuario esta autenticado <hr>";
-					echo "Usuario possui acesso -> ".$_SESSION['acesso']." <hr>";
+					//echo "Usuario esta autenticado <hr>";
+					//echo "Usuario possui acesso -> ".$_SESSION['acesso']." <hr>";
 
 					if($_SESSION['acesso'] >= $acesso_minimo){
 						$permissao = true;
@@ -126,7 +126,7 @@ class AuthController extends Action{
 			if(isset($_SESSION['autenticado']) && isset($_SESSION['id'])){
 				if($_SESSION['autenticado'] == 'true' && $_SESSION['id'] > 0){
 					
-						echo "Usuario possui id -> ".$_SESSION['id']." <hr>";
+					//	echo "Usuario possui id -> ".$_SESSION['id']." <hr>";
 						$id = $_SESSION['id'];
 						return $id;
 	

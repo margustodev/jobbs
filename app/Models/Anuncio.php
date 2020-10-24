@@ -80,6 +80,29 @@ use MF\Model\Model;
 
         }
 
+        public function buscarAnuncios($chave, $local){
+
+
+            $query = "SELECT a.id,titulo,descricao,data_inicio,fotos_trabalhos, cidade.nome,prof.nome_publico,prof.sobre,prof.telefone,prof.endereco_comercial,prof.formas_pagamento  FROM anuncio as a 
+            INNER JOIN perfil_profissional as prof on prof.id = a.perfil_profissional
+            INNER JOIN cidade on cidade.id = prof.cidade_atuacao
+            WHERE descricao LIKE ? AND (cidade.nome like ? OR cidade.estado like ?) AND a.ativo = 1 AND prof.ativo = 1 ORDER by a.data_inicio ASC;";
+
+            // $query = "SELECT * from anuncio
+            // WHERE descricao like ?
+            // ORDER by data_inicio ASC";
+
+             $stmt = $this->db->prepare($query);
+             $stmt->bindValue(1, "%$chave%");
+             $stmt->bindValue(2, "%$local%");
+             $stmt->bindValue(3, "%$local%");
+            $stmt->execute();
+           
+            return $stmt->fetchAll();
+
+        }
+
+
         public function visualizarPorAnuncio($idAnuncio){
 
 $query = "select distinct a.id, a.titulo, a.descricao,a.data_inicio,a.data_fim,a.ativo,a.fotos_trabalhos,

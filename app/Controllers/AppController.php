@@ -20,7 +20,7 @@ class AppController extends Action{
            // $idUsuario = AuthController::getIdSession();
            // $resultado = $perfilProfissional->getPerfisById($idUsuario);
           //  $this->view->perfis = $resultado;
-        $this->render('novo_anuncio','layout');
+        $this->render('novo_anuncio','layout2');
 
     }else{
         echo "Você precisa fazer login";
@@ -53,7 +53,7 @@ class AppController extends Action{
 		$anuncio->__set('descricao', $_POST['descricao']);
         $anuncio->__set('fotos_trabalhos', $_POST['fotos']);
         $anuncio->__set('data_inicio', date("y-m-d"));
-echo "OBA";
+
 /*         if($perfilProfissional->checkIdUsuario($idUsuario)){
         $perfilProfissional->__set('id',$_POST['id_perfil']);
 
@@ -112,7 +112,7 @@ echo "OBA";
         
 
 
-        $this->render('meus_anuncios','layout');
+        $this->render('meus_anuncios','layout2');
 
         }else{
             echo "Você precisa fazer login";
@@ -154,7 +154,7 @@ echo "OBA";
  
                 $perfil = $perfil->getPerfil($idUsuario);
                 $this->view->perfil = $perfil;
-            $this->render('meu_perfil','layout');
+            $this->render('meu_perfil','layout2');
     
             }else{
                 echo "Você precisa fazer login";
