@@ -36,8 +36,20 @@ class IndexController extends Action{
 		$id = $_GET['id'];
 		
 		$anuncio = $anuncio->visualizarPorAnuncio($id);
-	
-		$this->view->anuncio = $anuncio;
+
+		
+		$resultado = Array();
+		foreach ($anuncio as $id => $campo) {
+			
+			
+			$resultado = $campo;
+			
+		}
+		echo"<pre>";
+		print_r($resultado);
+		echo "</pre>";
+		
+		$this->view->anuncio = $resultado;
 		
 		$this->render('detalha_anuncio','layout');
 	}

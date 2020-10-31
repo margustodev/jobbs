@@ -83,10 +83,31 @@ use MF\Model\Model;
         public function buscarAnuncios($chave, $local){
 
 
-            $query = "SELECT a.id,titulo,descricao,data_inicio,fotos_trabalhos, cidade.nome,prof.nome_publico,prof.sobre,prof.telefone,prof.endereco_comercial,prof.formas_pagamento  FROM anuncio as a 
-            INNER JOIN perfil_profissional as prof on prof.id = a.perfil_profissional
-            INNER JOIN cidade on cidade.id = prof.cidade_atuacao
-            WHERE descricao LIKE ? AND (cidade.nome like ? OR cidade.estado like ?) AND a.ativo = 1 AND prof.ativo = 1 ORDER by a.data_inicio ASC;";
+            $query = "SELECT distinct
+            anuncio.descricao,
+            anuncio.id,
+            anuncio.titulo,
+            anuncio.data_inicio,
+            perfil_profissional.nome_publico,
+            perfil_profissional.sobre,
+            perfil_profissional.telefone,
+            perfil_profissional.endereco_comercial,
+            ramo_atividade.descricao,
+            formas_pagamento.descricao
+          FROM anuncio
+            INNER JOIN perfil_profissional
+              ON anuncio.perfil_profissional = perfil_profissional.id
+            INNER JOIN perfil_has_cidades
+              ON perfil_has_cidades.id_perfil = perfil_profissional.id
+            INNER JOIN cidade
+              ON perfil_has_cidades.id_cidade = cidade.id
+            INNER JOIN ramo_atividade
+              ON perfil_profissional.ramo_atividade_id = ramo_atividade.id
+            INNER JOIN perfil_has_formas_pagamento
+              ON perfil_has_formas_pagamento.id_perfil = perfil_profissional.id
+            INNER JOIN formas_pagamento
+              ON perfil_has_formas_pagamento.id_formas_pagamento = formas_pagamento.id
+               WHERE anuncio.descricao LIKE ? AND cidade.nome like ?  AND anuncio.ativo = 1 AND perfil_profissional.ativo = 1 ORDER by anuncio.data_inicio ASC;";
 
             // $query = "SELECT * from anuncio
             // WHERE descricao like ?
@@ -95,7 +116,7 @@ use MF\Model\Model;
              $stmt = $this->db->prepare($query);
              $stmt->bindValue(1, "%$chave%");
              $stmt->bindValue(2, "%$local%");
-             $stmt->bindValue(3, "%$local%");
+    
             $stmt->execute();
            
             return $stmt->fetchAll();
@@ -105,17 +126,85 @@ use MF\Model\Model;
 
         public function visualizarPorAnuncio($idAnuncio){
 
-$query = "select distinct a.id, a.titulo, a.descricao,a.data_inicio,a.data_fim,a.ativo,a.fotos_trabalhos,
-prof.nome_publico,prof.sobre, prof.formas_pagamento, cid.nome from anuncio as a
-            INNER JOIN perfil_profissional as prof on a.perfil_profissional = prof.id
-            INNER JOIN cidade as cid on prof.cidade_atuacao = cid.id
-WHERE a.id = ?";
+/*
+SELECT
+  anuncio.titulo,
+  anuncio.descricao,
+  anuncio.id AS anuncio_id,
+  perfil_profissional.nome_publico,
+  perfil_profissional.sobre,
+  perfil_profissional.endereco_comercial,
+  usuario.nome,
+  usuario.login,
+  usuario.email,
+  foto.url,
+  formas_pagamento.descricao,
+  cidade.nome,
+  ramo_atividade.descricao,
+  usuario.ativo
+FROM anuncio
+  INNER JOIN perfil_profissional
+    ON anuncio.perfil_profissional = perfil_profissional.id
+  INNER JOIN usuario
+    ON perfil_profissional.usuario_id = usuario.id
+  INNER JOIN foto
+    ON usuario.foto_perfil_id = foto.id
+  INNER JOIN perfil_has_formas_pagamento
+    ON perfil_has_formas_pagamento.id_perfil = perfil_profissional.id
+  INNER JOIN formas_pagamento
+    ON perfil_has_formas_pagamento.id_formas_pagamento = formas_pagamento.id
+  INNER JOIN perfil_has_cidades
+    ON perfil_has_cidades.id_perfil = perfil_profissional.id
+  INNER JOIN cidade
+    ON perfil_has_cidades.id_cidade = cidade.id
+  INNER JOIN ramo_atividade
+    ON perfil_profissional.ramo_atividade_id = ramo_atividade.id
+WHERE anuncio.id = 12
+AND usuario.ativo = 1
+AND perfil_profissional.ativo = 1
+*/
+
+$query = "SELECT distinct
+anuncio.titulo,
+anuncio.descricao,
+anuncio.id AS anuncio_id,
+perfil_profissional.nome_publico,
+perfil_profissional.sobre,
+perfil_profissional.endereco_comercial,
+usuario.nome,
+usuario.login,
+usuario.email,
+foto.url,
+formas_pagamento.descricao as formas_pagamento,
+cidade.nome,
+ramo_atividade.descricao,
+usuario.ativo
+FROM anuncio
+INNER JOIN perfil_profissional
+  ON anuncio.perfil_profissional = perfil_profissional.id
+INNER JOIN usuario
+  ON perfil_profissional.usuario_id = usuario.id
+INNER JOIN foto
+  ON usuario.foto_perfil_id = foto.id
+INNER JOIN perfil_has_formas_pagamento
+  ON perfil_has_formas_pagamento.id_perfil = perfil_profissional.id
+INNER JOIN formas_pagamento
+  ON perfil_has_formas_pagamento.id_formas_pagamento = formas_pagamento.id
+INNER JOIN perfil_has_cidades
+  ON perfil_has_cidades.id_perfil = perfil_profissional.id
+INNER JOIN cidade
+  ON perfil_has_cidades.id_cidade = cidade.id
+INNER JOIN ramo_atividade
+  ON perfil_profissional.ramo_atividade_id = ramo_atividade.id
+WHERE anuncio.id = ?
+AND usuario.ativo = 1
+AND perfil_profissional.ativo = 1";
 
              $stmt = $this->db->prepare($query);
             $stmt->bindValue(1, $idAnuncio);
             $stmt->execute();
-           
-            return $stmt->fetch();
+          
+            return $stmt->fetchAll();
 
         }
 
