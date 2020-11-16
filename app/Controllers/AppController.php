@@ -144,7 +144,7 @@ class AppController extends Action{
     }
 
 
-        // visualizar proprio perfis
+        // visualizar proprio perfil
         public function meuPerfilProfissional(){
 
             if(AuthController::checkPermissao(1)){
@@ -180,6 +180,15 @@ class AppController extends Action{
 
 
         }
+
+              //TODO upload de foto
+        public function uploadFoto(){
+
+
+
+
+        }
+
 
 
                             

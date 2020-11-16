@@ -99,6 +99,13 @@ use MF\Init\Bootstrap;
                 'action' => 'editarPerfilProfissional'
             );
 
+                        //TODO upload de fotos
+                        $routes['/upload'] = array(
+                'route' => '/upload',
+                'controller' => 'AppController',
+                'action' => 'uploadFoto'
+            );
+
 
 
             $this->setRoutes($routes);
