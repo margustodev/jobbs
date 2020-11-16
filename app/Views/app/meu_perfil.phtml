@@ -24,21 +24,30 @@ value="<?=$this->view->perfil['telefone'] ?>">
     <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['sobre'] ?>">
     </div>
 
-    <div class="form-group">
-    <label for="fotos">Formas Pagamento</label>
-    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['formas_pagamento'] ?>">
+<div class="form-group">
+    <label for="formas_pagamento">Formas de Pagamento</label>
+    <select multiple class="form-control" required="true" name ="formas_pagamento[]" id="formas_pagamento">
+      <option>Dinheiro</option>
+      <option>Cartão de Débito</option>
+      <option>Cartão de Crédito</option>
+      <option>Cheque</option>
+      <option>Outros</option>
+</select>
+</div>
+
+<div class="form-group">
+    <label for="cidade_atuacao">Cidade de atuação</label>
+    <select class="form-control" required="true" name="cidade_atuacao_id" id="cidade_atuacao">
+        <?php foreach ($this->view->cidades as $id => $valor) {  ?>
+          
+      <option value=<?= $valor['id'] ?>><?= $valor['nome'] ?></option>
+      <?php   }?>
+        </select>
     </div>
 
-    <div class="form-group">
-    <label for="fotos">Formas de Pagamento</label>
-    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['formas_pagamento'] ?>">
-    </div>
 
-    <div class="form-group">
-    <label for="fotos">Cidade Atuação</label>
-    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['cidade'] ?>">
-    </div>
-    <button type="submit" class="btn btn-secondary" value="submit">Alterar</button>
-</form>
+        <button type="submit" class="btn btn-secondary" value="submit">Alterar Perfil</button>
+
+
 
 </div>

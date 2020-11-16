@@ -12,6 +12,10 @@ use App\Models;
 class IndexController extends Action{
 
 
+	public function pesquisa(){
+						$ramo_atividade = Container::getModel('RamoAtividade');
+		$this->view->ramo_atividades = $ramo_atividades;
+	}
 
 	/*
 		Traz o que esta no phtml para essa class atraves do require(para esse contexto)
@@ -108,8 +112,17 @@ class IndexController extends Action{
 		&& isset($_POST['nome_publico'])
 		&& isset($_POST['ramo_atividade_id'])
 		&& isset($_POST['cidade_atuacao_id'])
+		&& isset($_POST['formas_pagamento'])
 	){
-
+		$pgtos = $_POST['formas_pagamento'];
+		$formas_pagamento_all = "";
+		foreach ($pgtos as $value) {
+			print_r("E vai setando ai filho:".$value);
+			$formas_pagamento_all = $value . ' , ' .$formas_pagamento_all;
+		}
+		echo"<pre>";
+		print_r("TOTAL".$formas_pagamento_all);
+				echo"</pre>";
 		$usuario = Container::getModel('Usuario');
 		$perfilProfissional = Container::getModel('PerfilProfissional');
 		
@@ -134,7 +147,7 @@ class IndexController extends Action{
 		$perfilProfissional->__set('nome_publico', $_POST['nome_publico']);
 		$perfilProfissional->__set('sobre', $_POST['sobre']);
 		$perfilProfissional->__set('endereco_comercial', $_POST['endereco_comercial']);
-		$perfilProfissional->__set('formas_pagamento', $_POST['formas_pagamento']);
+		$perfilProfissional->__set('formas_pagamento', $formas_pagamento_all);
 		$perfilProfissional->__set('cidade_atuacao', $_POST['cidade_atuacao_id']);
 
 		$usuario->__set('perfilProfissional', $perfilProfissional);

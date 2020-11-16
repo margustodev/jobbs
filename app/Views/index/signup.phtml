@@ -81,7 +81,7 @@ if(isSet($_GET['msg'])){
 </div>
 <div class="form-group">
     <label for="ramo_atividade">Ramo de Atividade</label>
-    <select class="form-control" name="ramo_atividade_id" id="ramo_atividade">
+    <select class="form-control" required ="true" name="ramo_atividade_id" id="ramo_atividade">
         <?php foreach ($this->view->ramo_atividades as $id => $valor) {  ?>
            
        
@@ -91,19 +91,22 @@ if(isSet($_GET['msg'])){
 
 <div class="form-group">
     <label for="cidade_atuacao">Cidade de atuação</label>
-    <select class="form-control" name="cidade_atuacao_id" id="cidade_atuacao">
+    <select class="form-control" required="true" name="cidade_atuacao_id" id="cidade_atuacao">
         <?php foreach ($this->view->cidades as $id => $valor) {  ?>
           
       <option value=<?= $valor['id'] ?>><?= $valor['nome'] ?></option>
       <?php   }?>
         </select>
     </div>
+
 <div class="form-group">
     <label for="formas_pagamento">Formas de Pagamento</label>
-    <select multiple class="form-control" id="formas_pagamento">
+    <select multiple class="form-control" required="true" name ="formas_pagamento[]" id="formas_pagamento">
       <option>Dinheiro</option>
       <option>Cartão de Débito</option>
       <option>Cartão de Crédito</option>
+      <option>Cheque</option>
+      <option>Outros</option>
 </select>
 </div>
 

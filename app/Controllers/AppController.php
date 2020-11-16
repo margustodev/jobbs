@@ -148,7 +148,16 @@ class AppController extends Action{
         public function meuPerfilProfissional(){
 
             if(AuthController::checkPermissao(1)){
-            
+            		$cidade = Container::getModel('Cidade');
+		$cidades = $cidade->getCidades();
+
+		$ramo_atividade = Container::getModel('RamoAtividade');
+		$ramo_atividades = $ramo_atividade->getRamoAtividades();
+
+		$this->view->cidades = $cidades ;
+		$this->view->ramo_atividades = $ramo_atividades;
+    
+        
             $idUsuario = AuthController::getIdSession();
             $perfil = Container::getModel('PerfilProfissional');
  
@@ -162,6 +171,14 @@ class AppController extends Action{
             
             }
     
+        }
+
+        //TODO vai processar a alteração de perfil profissional do usuario e salvar no banco
+        public function alterarPerfil(){
+
+
+
+
         }
 
 
