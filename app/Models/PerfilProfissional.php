@@ -85,6 +85,37 @@ use MF\Model\Model;
         
         }
 
+        public function atualizarPerfil($perfil){
+
+            $resultado = false;
+
+            $query = "UPDATE perfil_profissional SET 
+            nome_publico = ?, 
+            telefone = ?, 
+            endereco_comercial = ?, 
+            sobre = ?, 
+            formas_pagamento = ?, 
+            cidade_atuacao = ?
+            WHERE id = ?";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(1, $perfil->__get('nome_publico'));
+            $stmt->bindValue(2, $perfil->__get('telefone'));
+            $stmt->bindValue(3, $perfil->__get('endereco_comercial'));
+            $stmt->bindValue(4, $perfil->__get('sobre'));
+            $stmt->bindValue(5, $perfil->__get('formas_pagamento'));
+            $stmt->bindValue(6, $perfil->__get('cidade_atuacao'));
+            $stmt->bindValue(7, $perfil->__get('id'));
+            $stmt->execute();
+
+
+            if($stmt->rowCount() > 0)
+            $resultado = true;
+
+            return $resultado;
+
+        }
+
 
      
     }

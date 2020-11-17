@@ -174,9 +174,56 @@ class AppController extends Action{
         }
 
         //TODO vai processar a alteração de perfil profissional do usuario e salvar no banco
-        public function alterarPerfil(){
+        public function editarPerfilProfissional(){
 
+ if(AuthController::checkPermissao(1)){
+        
+        $idUsuario = AuthController::getIdSession();
+   
+		if(isset($_POST['nome_publico']) 
+		&& isset($_POST['telefone'])
+        && isset($_POST['endereco_comercial'])
+        && isset($_POST['sobre'])
+        && isset($_POST['formas_pagamento'])
+        && isset($_POST['cidade_atuacao'])
+        
+	){
 
+        $pgtos = $_POST['formas_pagamento'];
+        $formas_pagamento_all = "";
+        
+        $perfilProfissional = Container::getModel('PerfilProfissional');
+
+        $idPerfil = $perfilProfissional->getPerfisById($idUsuario);
+
+        $perfilProfissional->__set('id',$idPerfil['id']);
+        $perfilProfissional->__set('nome_publico',$_POST['nome_publico']);
+        $perfilProfissional->__set('telefone',$_POST['telefone']);
+        $perfilProfissional->__set('endereco_comercial',$_POST['endereco_comercial']);
+        $perfilProfissional->__set('sobre',$_POST['sobre']);
+        $perfilProfissional->__set('formas_pagamento',$_POST['formas_pagamento']);
+        $perfilProfissional->__set('cidade_atuacao',$_POST['cidade_atuacao']);
+
+		if($perfilProfissional->atualizarPerfil($perfilProfissional)){
+			echo "Perfil Atualizado com sucesso";
+			header("refresh:3 /");
+			//$this->render('index','layout');
+		}else{
+			echo "Falha na atualizacao do perfil";
+
+			header("Location: /meu_perfil?msg=erroB");
+		}
+
+	}else{
+		echo "Falha na atualizacao do perfil";
+		header("Location: /meu_perfil?msg=erroC");
+    }
+
+}else{
+    echo "Você precisa fazer login";
+    header("Location: /login?msg=erro");
+
+}
 
 
         }
