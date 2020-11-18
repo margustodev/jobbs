@@ -114,6 +114,8 @@ class IndexController extends Action{
 		&& isset($_POST['cidade_atuacao_id'])
 		&& isset($_POST['formas_pagamento'])
 	){
+
+			
 		$pgtos = $_POST['formas_pagamento'];
 		$formas_pagamento_all = "";
 		foreach ($pgtos as $value) {
@@ -149,6 +151,12 @@ class IndexController extends Action{
 		$perfilProfissional->__set('endereco_comercial', $_POST['endereco_comercial']);
 		$perfilProfissional->__set('formas_pagamento', $formas_pagamento_all);
 		$perfilProfissional->__set('cidade_atuacao', $_POST['cidade_atuacao_id']);
+//TODO vai salvar foto no bd e pegar o id, ou vai só usar a url ?
+		if(isset($_POST['foto'])){
+			$usuario->__set('foto', $_POST['foto']);
+		}else{
+			$usuario->__set('foto', $_POST['nouser']);
+		}
 
 		$usuario->__set('perfilProfissional', $perfilProfissional);
 

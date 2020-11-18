@@ -22,9 +22,30 @@ if(isSet($_GET['msg'])){
      </div>
 <h1>Cadastro de Usuário</h1>
 
-
+    <?php 
+            if($this->view->erroLogin == true){
+       
+                ?>
+ 
+             <div class="alert alert-danger" role="alert">
+             <?php print_r($this->view->url) ?>
+         </div>
+         <?php  } ?>
 <div class="container">
+<div class="container">
+<!-- O tipo de encoding de dados, enctype, DEVE ser especificado abaixo -->
+<form enctype="multipart/form-data" action="/upload" method="POST">
+    <!-- MAX_FILE_SIZE deve preceder o campo input -->
+  </br>
+    <!-- O Nome do elemento input determina o nome da array $_FILES -->
+    Foto de perfil: <input name="userFile" type="file" />
+    <input type="submit" value="Enviar arquivo" />
+</form>
+</div>
 <form method="POST" action="/processa_registro">
+
+
+    <input type="hidden" class="form-control" id="foto" name="foto" value='<?=$_GET["data"]?>'>
 <div class="form-row">
 <div class="form-group col-md-5">
 <label for="nome">Nome</label>

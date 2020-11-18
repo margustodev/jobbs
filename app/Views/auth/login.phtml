@@ -11,12 +11,12 @@
     <div class="col-lg-5">
 
     <?php 
-            if($this->view->erroLogin == true){
+            if($this->view->$url == true){
        
                 ?>
  
              <div class="alert alert-danger" role="alert">
-             <?php print_r($this->view->msgErro) ?>
+             <?php print_r($this->view->$url) ?>
          </div>
          <?php  } ?>
       <form method="post" action="/login">
