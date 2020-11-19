@@ -1,0 +1,20 @@
+.site-header a {
+    color: rgb(233, 233, 233);
+    transition: ease-in-out color 0.5s;
+
+}
+.site-header .texto{
+    color: #feb100;
+    padding-top: 6;
+    font-size: 18;
+}      
+.site-header  a:hover{
+    color:#feb100;
+    padding-top: 5px;
+    text-decoration: none; 
+
+}
+
+.pesquisa input{
+    border-color: #feb100;
+}
