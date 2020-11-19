@@ -57,13 +57,48 @@ use MF\Model\Model;
 
             $query = "select distinct a.id, a.titulo, a.descricao,a.data_inicio,a.data_fim,a.ativo,a.fotos_trabalhos from anuncio as a
             INNER JOIN perfil_profissional as prof on a.perfil_profissional = prof.id
-            INNER JOIN usuario as user on prof.usuario_id = ?";
+            INNER JOIN usuario as user on prof.usuario_id = ? and a.ativo = 1";
 
              $stmt = $this->db->prepare($query);
             $stmt->bindValue(1, $idUsuario);
             $stmt->execute();
            
             return $stmt->fetchAll();
+
+        }
+            public function checkUsuario($idUsuario, $idANuncio){
+
+                $query = "select count(*) from usuario
+inner join perfil_profissional on perfil_profissional.usuario_id = usuario.id
+inner join anuncio on anuncio.perfil_profissional = perfil_profissional.id
+where usuario.id = :userid and anuncio.id = :anuncioid";
+                    $stmt = $this->db->prepare($query);
+                     $stmt->bindValue(':userid', $idUsuario);
+                     $stmt->bindValue(':anuncioid', $idAnuncio);
+                      $stmt->execute();
+
+                      if($stmt->fetchColumn() == 0){
+                          return true;
+                      }else{
+                          return false;
+                      }
+
+            }
+
+                public function excluirAnuncio($idAnuncio){
+                    echo "to aqui" .$idAnuncio;
+                    $resultado = false;
+            $query = "UPDATE anuncio SET ativo = 0 WHERE anuncio.id = ?";
+
+             $stmt = $this->db->prepare($query);
+            $stmt->bindValue(1, $idAnuncio);
+            $stmt->execute();
+
+
+            if($stmt->rowCount() > 0)
+            $resultado = true;
+
+            return $resultado;
 
         }
 
@@ -172,6 +207,7 @@ $query = "SELECT
             left join foto on fotos_trabalhos.id_foto = foto.id 
             left join foto as fotoperfil on foto.id = usuario.foto_perfil_id 
             WHERE anuncio.id = ?
+           AND anuncio.ativo = 1
 AND usuario.ativo = 1
 AND perfil_profissional.ativo = 1";
 

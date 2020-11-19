@@ -136,7 +136,31 @@ class AppController extends Action{
     public function removerAnuncio(){
 
 
+        if(AuthController::checkPermissao(1)){
+        echo $_GET['id'] . 'etapa 1';
+        $idUsuario = AuthController::getIdSession();
+        $anuncio = Container::getModel('Anuncio');
+        $anuncio->__set('id',$_GET['id']);
+        $resultado = false;
+                echo 'idUsuario'. $idUsuario;
+                echo 'id anuncio'.  $anuncio->__get('id');
+        //Verifica se o id que esta na sessao pertence ao titular do anuncio
+        if($anuncio->checkUsuario($idUsuario,$anuncio->__get('id')))
+          if($anuncio->excluirAnuncio($anuncio->__get('id'))){
+            header("Location: /meus_anuncios?msg=sucesso");
+            return;
+            
+          }
 
+      
+
+        header("Location: /meus_anuncios?msg=erro");
+
+        }else{
+            echo "Você precisa fazer login";
+            header("Location: /login?msg=erro");
+        
+        }
 
 
 

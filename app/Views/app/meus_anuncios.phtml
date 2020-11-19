@@ -1,33 +1,68 @@
 
+<div class="container">
+<?php 
+if(isSet($_GET['msg'])){
+        if($_GET['msg'] == 'erro'){
+   
+            ?>
 
+         <div class="alert alert-danger" role="alert">
+         Erro na exclusao do anuncio.
+         </br>
+     <?php  } }?>
+     </div>
+     <div class="container">
+<?php 
+if(isSet($_GET['msg'])){
+        if($_GET['msg'] == 'sucesso'){
+   
+            ?>
 
-<div class="form-group">
+         <div class="alert alert-success" role="alert">
+         Anuncio excluido com sucesso.
+         </br>
+     <?php  } }?>
+     </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Descricao</th>
+            <th scope="col">Data Início</th>
+            <th scope="col">Fotos</th>
+            <th scope="col">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+       
 <?php
 
 
 
-foreach ($this->view->anuncios as $key => $value) {
+foreach ($this->view->anuncios as $key => $value) {?>
+ <tr>
+<td>
+    <input type="text" value=<?= $value['id'] ?>>
+</td>
+<td>
+    <input type="text" value=<?= $value['titulo'] ?>>
+</td>
+<td>
+    <input type="text" value=<?= $value['descricao'] ?>>
+</td>
+<td>
+    <input type="text" value=<?= $value['data_inicio'] ?>>
+</td>
+<td>
+    <input type="text" value=<?= $value['fotos_trabalhos'] ?>>
+</th>
+<td>
+    <a class="btn btn-primary" href="/removerAnuncio?id=<?= $value['id'] ?>" role="button">Excluir Anuncio</a>
+ </td>
 
-
-?>
-<form>
-<input type="text" value = <?= $value['id'] ?>>
-
-<input type="text" value = <?= $value['titulo'] ?>>
-
-<input type="text" value = <?= $value['descricao'] ?>>
-
-<input type="text" value = <?= $value['data_inicio'] ?>>
-
-<input type="text" value = <?= $value['fotos_trabalhos'] ?>>
-
-
-<button type="submit" class="btn btn-secondary" value="submit">Alt</button>
-<button type="submit" class="btn btn-secondary" value="submit">Exc</button>
-
-</form>
+</tr>
 <?php } ?>
 
-
-
-</div>
+</tbody>
+</table>
