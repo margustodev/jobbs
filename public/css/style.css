@@ -18,3 +18,11 @@
 .pesquisa input{
     border-color: #feb100;
 }
+
+.card-img-top {
+    border-radius: 21px 21px 0 0
+}
+
+.card{
+    border-radius: 21px 21px 0 0
+}
