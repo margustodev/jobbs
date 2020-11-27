@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=no" />
+    <title>Exercício Formulário</title>
+
+    <link rel="stylesheet" href="titulo_e_descricao.css" />
+    <link rel="stylesheet" href="formulario.css" />
+  </head>
+
+  <body>
+    <form>
+     <div class="container">
+      
+      <legend id="titulo">Edite seu título e perfil</legend>
+
+      <div class="editartitulo">
+        <label> Título: </label>
+        <input type="text" id="editartitulo" class="input-padrao" required placeholder ="Edite o título"/> </br></br>
+      </div>
+
+        <label class="editardescricao"for="editardescricao">Descrição:</label>
+        <textarea
+          cols="70"
+          rows="10"
+          id="mensagem"
+          class="caixadescricao"
+        required></textarea> </br> </br>
+
+        <input type="submit" value="Fizalizar" class="finalizar"/>
+
+    </div>
+    </form>
+  </body>
+</html>
