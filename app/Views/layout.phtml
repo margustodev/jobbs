@@ -18,9 +18,11 @@
 	</head>
 
 	<body>
-	<div class="container">
-	<div style="background-color: rgba(153, 204, 255, 0.1)">
-<?php 
+<nav class="site-header sticky-top py-1" style="background-color: rgba(0, 0, 0, .85);    backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px)">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+
+        <?php 
     if(!isset($_SESSION)) 
     { 
         session_start(); 
@@ -29,30 +31,32 @@ if(isset($_SESSION['autenticado']) && isset($_SESSION['acesso'])){
 
   ?>
 
-  Seja bem vindo  <?= $_SESSION['nome'] ?> <a class="btn btn-lg btn-outline-secondary" href="/logout" role="button" >Sair</a> 
+<div class="texto">Seja bem vindo <strong><?= $_SESSION['nome'] ?> </strong></div>
+<a class="py-2 d-none d-md-inline-block" href="/logout" role="button">Sair</a>
   
-  <a class="btn btn-lg btn-outline-secondary" href="/meus_anuncios" role="button" >Meus Anúncios</a>
+<a class="py-2 d-none d-md-inline-block" href="/meus_anuncios" role="button">Meus Anúncios</a>
   
-  <a class="btn btn-lg btn-outline-secondary" href="/novo_anuncio" role="button" >Anunciar Perfil</a>
+<a class="py-2 d-none d-md-inline-block" href="/novo_anuncio" role="button">Anunciar Perfil</a>
   
-  <a class="btn btn-lg btn-outline-secondary" href="/meu_perfil" role="button" >Meu Perfil Profissional</a>
+<a class="py-2 d-none d-md-inline-block" href="/meu_perfil" role="button">Meu Perfil Profissional</a>
   
   <?php }else{ ?>
-    <a class="btn btn-lg btn-outline-secondary" href="/login" role="button" >Entrar</a> 
-    <a class="btn btn-lg btn-outline-secondary" href="/signup" role="button" >Divulgar meu trabalho</a>
+    <a class="py-2 d-none d-md-inline-block" href="/login" role="button">Entrar</a>
+    <a class="py-2 d-none d-md-inline-block" href="/signup" role="button">Divulgar meu trabalho</a>
     
 	<?php } ?>
-	</div>
-    <div class="container mx-auto">
+    </div>
+    </nav>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light>
     <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 mb-3 ">
-    <div class="mx-auto" style="width: 350px;">
+<div class="mx-auto">
 	 <a href="./"> <img src="jobbs-logo.png" height="350"></a>
 
     </div>
 	</div>
 	
 	<form action="/pesquisar" metod="GET">
-    <div class="container">
+    <div class="pesquisa container">
 
     <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">
     <div class="col-3"></div><div class="col-6">

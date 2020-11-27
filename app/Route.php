@@ -82,6 +82,13 @@ use MF\Init\Bootstrap;
                 'controller' => 'AppController',
                 'action' => 'meusAnuncios'
             );
+                        //excluir proprio anuncio
+            //Ta sem layout, sem fotos, etc
+            $routes['/remover'] = array(
+                'route' => '/removerAnuncio',
+                'controller' => 'AppController',
+                'action' => 'removerAnuncio'
+            );
 
                 //Exibe a tela para alterar o perfil
                 //TODO pré selecionar os campos que veio do usuario(formas de pgto e cidade de atuacao)

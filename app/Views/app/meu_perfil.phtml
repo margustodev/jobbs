@@ -9,19 +9,19 @@
 
 
     <div class="form-group">
-    <label for="descricao">Telefone</label>
-    <input type="text" class="form-control"  required="true" id="descricao" name="descricao" 
+    <label for="telefone">Telefone</label>
+    <input type="text" class="form-control"  required="true" id="telefone" name="telefone" 
 value="<?=$this->view->perfil['telefone'] ?>">
     </div>
 
 
     <div class="form-group">
-    <label for="fotos">Endereço Comercial</label>
-    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['endereco_comercial'] ?>">
+    <label for="endereco_comercial">Endereço Comercial</label>
+    <input type="text" class="form-control" id="endereco_comercial" required="true" name="endereco_comercial" value="<?=$this->view->perfil['endereco_comercial'] ?>">
     </div>
     <div class="form-group">
-    <label for="fotos">Sobre</label>
-    <input type="text" class="form-control" id="fotos" name="fotos" value="<?=$this->view->perfil['sobre'] ?>">
+    <label for="sobre">Sobre</label>
+    <input type="text" class="form-control" id="sobre" name="sobre" value="<?=$this->view->perfil['sobre'] ?>">
     </div>
 
 <div class="form-group">
@@ -37,7 +37,7 @@ value="<?=$this->view->perfil['telefone'] ?>">
 
 <div class="form-group">
     <label for="cidade_atuacao">Cidade de atuação</label>
-    <select class="form-control" required="true" name="cidade_atuacao_id" id="cidade_atuacao">
+    <select class="form-control" required="true" name="cidade_atuacao" id="cidade_atuacao">
         <?php foreach ($this->view->cidades as $id => $valor) {  ?>
           
       <option value=<?= $valor['id'] ?>><?= $valor['nome'] ?></option>
